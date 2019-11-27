@@ -10,7 +10,7 @@ define("TBL_USERS", "users");
 $user_roles=array(      // vartotojų rolių vardai lentelėse ir  atitinkamos userlevel reikšmės
 	"Administratorius"=>"9",
 	"Studentas"=>"5",
-	"Dėstytytojas"=>"4");   // galioja ir vartotojas "guest", kuris neturi userlevel
+	"Dėstytojas"=>"4");   // galioja ir vartotojas "guest", kuris neturi userlevel
 define("DEFAULT_LEVEL","Studentas");  // kokia rolė priskiriama kai registruojasi
 define("ADMIN_LEVEL","Administratorius");  // kas turi vartotojų valdymo teisę
 define("UZBLOKUOTAS","255");      // vartotojas negali prisijungti kol administratorius nepakeis rolės

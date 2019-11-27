@@ -15,11 +15,14 @@ $role="";
         echo "Prisijungęs vartotojas: <b>".$user."</b>     Rolė: <b>".$role."</b> <br>";
         echo "</td></tr><tr><td>";
         if ($_SESSION['user'] != "guest") echo "[<a href=\"useredit.php\">Redaguoti paskyrą</a>] &nbsp;&nbsp;";
-        echo "[<a href=\"operacija1.php\">Demo operacija1</a>] &nbsp;&nbsp;";
-        echo "[<a href=\"operacija2.php\">Demo operacija2</a>] &nbsp;&nbsp;";
-     //Trečia operacija tik rodoma pasirinktu kategoriju vartotojams, pvz.:
-        if (($userlevel == $user_roles["Studentas"]) || ($userlevel == $user_roles[ADMIN_LEVEL] )) {
-            echo "[<a href=\"operacija3.php\">Demo operacija3</a>] &nbsp;&nbsp;";
+        if ($userlevel == $user_roles["Dėstytojas"]) {
+            echo "[<a href=\"operacija1.php\">Kurti testą</a>] &nbsp;&nbsp;";
+            echo "[<a href=\"operacija3.php\">Redaguoti testus</a>] &nbsp;&nbsp;";
+            echo "[<a href=\"operacija3.php\">Testų įvertinimai</a>] &nbsp;&nbsp;";
+       		} 
+        if (($userlevel == $user_roles["Studentas"])) {
+            echo "[<a href=\"operacija3.php\">Atlikti testą</a>] &nbsp;&nbsp;";
+            echo "[<a href=\"operacija3.php\">Mano rezultatai</a>] &nbsp;&nbsp;";
        		}   
         //Administratoriaus sąsaja rodoma tik administratoriui
         if ($userlevel == $user_roles[ADMIN_LEVEL] ) {
