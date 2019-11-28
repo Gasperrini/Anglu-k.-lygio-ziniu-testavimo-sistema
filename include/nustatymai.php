@@ -11,7 +11,7 @@ $user_roles=array(      // vartotojų rolių vardai lentelėse ir  atitinkamos u
 	"Administratorius"=>"9",
 	"Studentas"=>"5",
 	"Dėstytojas"=>"4");   // galioja ir vartotojas "guest", kuris neturi userlevel
-define("STUDENT_LEVEL","Studentas");  // kokia rolė priskiriama kai registruojasi
+define("DEFAULT_LEVEL","Studentas");  // kokia rolė priskiriama kai registruojasi
 define("DESTYTOJAS_LEVEL","Dėstytojas");
 define("ADMIN_LEVEL","Administratorius");  // kas turi vartotojų valdymo teisę
 define("UZBLOKUOTAS","255");      // vartotojas negali prisijungti kol administratorius nepakeis rolės

@@ -21,7 +21,7 @@ $role="";
             echo "[<a href=\"operacija3.php\">Testų įvertinimai</a>] &nbsp;&nbsp;";
        		} 
         if (($userlevel == $user_roles["Studentas"])) {
-            echo "[<a href=\"operacija3.php\">Atlikti testą</a>] &nbsp;&nbsp;";
+            echo "[<a href=\"attend_test.php\">Atlikti testą</a>] &nbsp;&nbsp;";
             echo "[<a href=\"operacija3.php\">Mano rezultatai</a>] &nbsp;&nbsp;";
        		}   
         //Administratoriaus sąsaja rodoma tik administratoriui
