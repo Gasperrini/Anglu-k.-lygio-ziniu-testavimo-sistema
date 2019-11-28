@@ -30,11 +30,12 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
             $sql = "SELECT * FROM questions WHERE fk_test='$id'";
         }
 
+
         $result = $connection->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $id = $row['id'];
+                //$id = $row['id'];
                 $question = $row['question'];
                 $mark = $row['mark'];
                 $answer_1 = $row['answer_1'];
@@ -42,13 +43,21 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $answer_3 = $row['answer_3'];
                 $answer_4 = $row['answer_4'];
                 $correct = $row['correct'];
-                echo "<tr><td>" . $row['question'] . "</td><td>"
-                        . $row["answer_1"] . "</td><td>" . $row["answer_2"] . "</td><td>" . $row["answer_3"] . "</td><td>" . $row["answer_4"] . "</td><td></tr>";
+                echo "<form method='POST' action='test_calc.php?id=".$id."'><br><b>" . $row['question'] . "</b><br><input type='radio' name='answer_1' value=".$answer_1.">"
+                        . $row['answer_1'] . "<br><input type='radio' name='answer_2' value=".$answer_2.">" . $row['answer_2'] . "<br><input type='radio' name='answer_3' value=".$answer_3.">" . $row['answer_3'] . 
+                        "<br><input type='radio' name='answer_4' value=".$answer_4.">" . $row['answer_4'] . "<input type='hidden' name='mark' value=".$row['mark'].">
+                        <input type='hidden' name='correct' value=".$row['correct']."><br><br>";
             }
         } else {
             echo "</table><h2 style='text-align:center'>Testas neturi sukurtu klausimu..</h2>";
         }
     }
+    ?>
+
+    <button type="submit"><b>Baigti testa</b></button>
+</form>
+
+    <?php
         $connection->close();
         ?>
   </body></html>
