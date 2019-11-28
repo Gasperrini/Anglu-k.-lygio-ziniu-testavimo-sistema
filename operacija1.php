@@ -1,28 +1,53 @@
 <?php
-// operacija2.php
-// tiesiog rodomas  tekstas ir nuoroda atgal
+// admin.php
+// vartotojų įgaliojimų keitimas ir naujo vartotojo registracija, jei leidžia nustatymai
+// galima keisti vartotojų roles, tame tarpe uzblokuoti ir/arba juos pašalinti
+// sužymėjus pakeitimus į procadmin.php, bus dar perklausta
 
 session_start();
-
-if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
-{ header("Location: logout.php");exit;}
-
+include("include/nustatymai.php");
+include("include/functions.php");
+// cia sesijos kontrole
+if (!isset($_SESSION['prev']) || ($_SESSION['ulevel'] != $user_roles[DESTYTOJAS_LEVEL])) {
+    header("Location: logout.php");
+    exit;
+}
+$_SESSION['prev'] = "admin";
 ?>
 
 <html>
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
-        <title>Sukurkite testą</title>
-        <link href="include/styles.css" rel="stylesheet" type="text/css" >
-    </head>
-    <body>
-        <table class="center" ><tr><td> <img src="../include/top.png"></td></tr><tr><td>
 
-      <table style="border-width: 2px; border-style: dotted;"><tr><td>
-         Atgal į [<a href="index.php">Pradžia</a>]
-      </td></tr></table><br>
-			
-		<div style="text-align: center;color:green"> <br><br>
-            <h1>Operacija 2.</h1>
-			Tuščias puslapis, tik nuoroda į pradžią. 
-        </div><br>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
+    <title>Administratoriaus sąsaja</title>
+    <link href="include/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <table class="center">
+        <tr>
+            <td>
+                <center><img src="include/top.png"></center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center>
+                    <font size="5">Testo kūrimas</font>
+                </center>
+            </td>
+        </tr>
+    </table> <br>
+    <center><b><?php echo $_SESSION['message']; ?></b></center>
+    <table class="center" style=" width:75%; border-width: 2px; border-style: dotted;">
+        <tr>
+            <td width=30%><a href="index.php">[Atgal]</a></td>
+            <td width=30%>
+            </td>
+        </tr>
+    </table>
+
+    <form method="POST" action=""
+</body>
+
+</html>
