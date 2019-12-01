@@ -1,28 +1,39 @@
 <?php
+// operacija3.php  Parodoma registruotų vartotojų lentelė
+
+session_start();
+if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
+{ header("Location: logout.php");exit;}
+
+?>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
+        <title>sdg</title>
+        <link href="include/styles.css" rel="stylesheet" type="text/css" >
+    </head>
+    <body>
+        <table class="center" ><tr><td>
+            <center><img src="include/top.png"></center>
+        </td></tr><tr><td> 
+ <?php
+		include("include/meniu.php"); //įterpiamas meniu pagal vartotojo rolę
+ ?> 
+        <center><font size="5"><?php $title?></font></center><br>
+
+<?php
 
 $connection = mysqli_connect("localhost", "root", "", "vartvald");
 if ($connection->connect_error) {
     die("Connection failed:" . $connection->connect_error);
 }
 
-if (isset($_GET['id'])) {
-    $id = mysqli_real_escape_string($connection, $_GET['id']);
+if (isset($_POST['fk'])) {
+    $fk = mysqli_real_escape_string($connection, $_POST['fk']);
 }
 
-if (isset($_POST['answer_1'])) {
-    $answer_1 = ($_POST['answer_1']);
-}
-
-if (isset($_POST['answer_2'])) {
-    $answer_2 = ($_POST['answer_2']);
-}
-
-if (isset($_POST['answer_3'])) {
-    $answer_3 = ($_POST['answer_3']);
-}
-
-if (isset($_POST['answer_4'])) {
-    $answer_4 = ($_POST['answer_4']);
+if (isset($_POST['id'])) {
+    $id = mysqli_real_escape_string($connection, $_POST['id']);
 }
 
 if (isset($_POST['mark'])) {
@@ -33,41 +44,20 @@ if (isset($_POST['correct'])) {
     $correct = ($_POST['correct']);
 }
 
-var_dump($correct);
 $grade = 0;
-var_dump($correct);
-if($answer_4==$correct)
+
+for($id = 0; $id < 3; $id++){
+if($_POST['answer_'.$id] == $correct[$id])
 {
-    echo "labas";
+    $grade = $grade + $mark[$id];
 }
-if($answer_1 == $correct){
-    $grade = $grade + $mark;
 }
 
-if($answer_2 == $correct){
-    $grade = $grade + $mark;
-}
+/*$sql = "INSERT INTO test_attempts (date, id, mark, fk_user, fk_test) VALUES
+        ('current_timestamp()','','$grade','$postal_code', '$id') ";*/
 
-if($answer_3 == $correct){
-    $grade = $grade + $mark;
-}
+echo "<h2 style='text-align:center'>Surinkai ".$grade." is 4</h2>";
 
-if($answer_4 == $correct){
-    $grade = $grade + $mark;
-}
-
-var_dump($grade);
-
-/*$connection = mysqli_connect("localhost", "root", "", "teltonika");
-if ($connection->connect_error) {
-    die("Connection failed:" . $connection->connect_error);
-}
-
-if (isset($_POST['id'])) {
-    $id = ($_POST['id']);
-    $sql = "INSERT INTO test_attempts (date, id, mark, fk_user, fk_test) VALUES
-        ('$name','$area','$population','$postal_code', '$id') ";
-
-    header("refresh:1 url=test.php?id=" . $id);
-    $connection->close();
-}*/
+$connection->close();
+?>
+</body></html>
