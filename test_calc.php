@@ -72,13 +72,18 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
 
                 $user=$_SESSION['user'];
                 $userid=$_SESSION['userid'];
+                $status;
 
-                $sql = "INSERT INTO test_attempts (date, id, mark, top_mark, fk_user, fk_test) VALUES
-                    (CURRENT_TIMESTAMP,null,'$grade','$top_grade','$userid','$fk');";
+                if($grade / $top_grade * 10 > 4.5)
+                    $status = 'Išlaikyta';
+                else $status = 'Neišlaikyta';
+
+                $sql = "INSERT INTO test_attempts (date, status, id, mark, top_mark, fk_user, fk_test) VALUES
+                    (CURRENT_TIMESTAMP,'$status',null,'$grade','$top_grade','$userid','$fk');";
 
                 mysqli_query($connection,$sql);
 
-                echo "<h2 style='text-align:center'>Surinkai " . $grade . " is " . $top_grade . "!</h2>";
+                echo "<h2 style='text-align:center'>" . $status . "! Surinkai " . $grade . " is " . $top_grade . "!</h2>";
 
                 $connection->close();
                 ?>
