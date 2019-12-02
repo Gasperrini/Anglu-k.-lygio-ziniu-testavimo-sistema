@@ -32,7 +32,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
 
 
         $result = $connection->query($sql);
-
+        $count = 0;
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $id = $row['id'];
@@ -43,12 +43,16 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $answer_3 = $row['answer_3'];
                 $answer_4 = $row['answer_4'];
                 $correct = $row['correct'];
+                
                 echo "<div><form method='POST' action='test_calc.php?id=".$fk."'><br><b>" . $row['question'] . "</b><br><input type='radio' name='answer_".$id."' value=".$answer_1.">"
                         . $row['answer_1'] . "<br><input type='radio' name='answer_".$id."' value=".$answer_2.">" . $row['answer_2'] . "<br><input type='radio' name='answer_".$id."' value=".$answer_3.">" . $row['answer_3'] . 
                         "<br><input type='radio' name='answer_".$id."' value=".$answer_4.">" . $row['answer_4'] . "<input type='hidden' name='mark[]' value=".$row['mark'].">
                         <input type='hidden' name='correct[]' value=".$row['correct'].">
+                        <input type='hidden' name='fk' value=".$fk.">
                         <input type='hidden' name='id' value=".$row['id']."><br><br></div>";
+                $count++;
             }
+            echo "<input type='hidden' name='count' value=".$count.">";
             echo '<button type="submit"><b>Baigti testa</b></button>';
         } else {
             echo "</table><h2 style='text-align:center'>Testas neturi sukurtu klausimu..</h2>";
