@@ -9,7 +9,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
 <html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
-        <title>Operacija 3</title>
+        <title>Testas</title>
         <link href="include/styles.css" rel="stylesheet" type="text/css" >
     </head>
     <body>
@@ -22,8 +22,10 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
         <center><font size="5"><?php $title?></font></center><br>
         <?php
         $connection = mysqli_connect("localhost", "root", "", "vartvald");
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id']) && isset($_GET['teacher']) && isset($_GET['level'])) {
             $fk = mysqli_real_escape_string($connection, $_GET['id']);
+            $teacher = mysqli_real_escape_string($connection, $_GET['teacher']);
+            $level = mysqli_real_escape_string($connection, $_GET['level']);
         if ($connection->connect_error) {
             die("Connection failed:" . $connection->connect_error);
         } else {
@@ -44,7 +46,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $answer_4 = $row['answer_4'];
                 $correct = $row['correct'];
                 
-                echo "<div><form method='POST' action='test_calc.php?id=".$fk."'><br><b>" . $row['question'] . "</b><br><input type='radio' name='answer_".$id."' value=".$answer_1.">"
+                echo "<div><form method='POST' action='test_calc.php?id=".$fk."&level=".$level."&teacher=".$teacher."'><br><b>" . $row['question'] . "</b><br><input type='radio' name='answer_".$id."' value=".$answer_1.">"
                         . $row['answer_1'] . "<br><input type='radio' name='answer_".$id."' value=".$answer_2.">" . $row['answer_2'] . "<br><input type='radio' name='answer_".$id."' value=".$answer_3.">" . $row['answer_3'] . 
                         "<br><input type='radio' name='answer_".$id."' value=".$answer_4.">" . $row['answer_4'] . "<input type='hidden' name='mark[]' value=".$row['mark'].">
                         <input type='hidden' name='correct[]' value=".$row['correct'].">

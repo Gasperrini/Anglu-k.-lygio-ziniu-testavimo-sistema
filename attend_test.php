@@ -9,7 +9,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
 <html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
-        <title>Operacija 3</title>
+        <title>Atlikti testą</title>
         <link href="include/styles.css" rel="stylesheet" type="text/css" >
     </head>
     <body>
@@ -34,7 +34,9 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
             while ($row = mysqli_fetch_assoc($result)) {
                 $id = $row['id'];
                 $title = $row['title'];
-                echo "<tr style='text-align:center'><td><a href='test.php?id={$row['id']}'>" . $row['title'] . "</a></td></tr>";
+                $level = $row['level'];
+                $teacher = $row['fk_user'];
+                echo "<tr style='text-align:center'><td><a href='test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}'>" . $row['title'] . ", lygis - " . $row['level'] . "</a></td></tr>";
             }
         } else {
             echo "</table><h2 style='text-align:center'>Nera sukurtu testu..</h2>";

@@ -11,7 +11,7 @@ include("include/functions.php");
 <html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
-        <title>Demo projektas</title>
+        <title>Anglų k. lygio žinių testavimo sistema</title>
         <link href="include/styles.css" rel="stylesheet" type="text/css" >
     </head>
     <body>

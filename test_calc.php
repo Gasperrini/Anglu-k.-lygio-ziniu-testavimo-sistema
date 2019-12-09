@@ -12,7 +12,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
-    <title>sdg</title>
+    <title>Testas baigtas!</title>
     <link href="include/styles.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -37,6 +37,14 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 $connection = mysqli_connect("localhost", "root", "", "vartvald");
                 if ($connection->connect_error) {
                     die("Connection failed:" . $connection->connect_error);
+                }
+
+                if (isset($_GET['teacher'])) {
+                    $teacher = mysqli_real_escape_string($connection, $_GET['teacher']);
+                }
+
+                if (isset($_GET['level'])) {
+                    $level = mysqli_real_escape_string($connection, $_GET['level']);
                 }
 
                 if (isset($_POST['fk'])) {
@@ -78,12 +86,15 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                     $status = 'Išlaikyta';
                 else $status = 'Neišlaikyta';
 
-                $sql = "INSERT INTO test_attempts (date, status, id, mark, top_mark, fk_user, fk_test) VALUES
-                    (CURRENT_TIMESTAMP,'$status',null,'$grade','$top_grade','$userid','$fk');";
+                $sql = "INSERT INTO test_attempts (date, status, id, mark, top_mark, level, name, teacher, fk_user, fk_test) VALUES
+                    (CURRENT_TIMESTAMP,'$status',null,'$grade','$top_grade','$level','$user','$teacher','$userid','$fk');";
 
                 mysqli_query($connection,$sql);
 
                 echo "<h2 style='text-align:center'>" . $status . "! Surinkai " . $grade . " is " . $top_grade . "!</h2>";
+
+                if($status == 'Išlaikyta')
+                echo "<h2 style='text-align:center'>Pasiektas lygis: " . $level . "!</h2>";
 
                 $connection->close();
                 ?>
