@@ -18,7 +18,7 @@ $role="";
         if ($userlevel == $user_roles["Dėstytojas"]) {
             echo "[<a href=\"operacija1.php\">Kurti testą</a>] &nbsp;&nbsp;";
             echo "[<a href=\"operacija3.php\">Redaguoti testus</a>] &nbsp;&nbsp;";
-            echo "[<a href=\"operacija3.php\">Testų įvertinimai</a>] &nbsp;&nbsp;";
+            echo "[<a href=\"tests_results.php\">Testų įvertinimai</a>] &nbsp;&nbsp;";
        		} 
         if (($userlevel == $user_roles["Studentas"])) {
             echo "[<a href=\"attend_test.php\">Atlikti testą</a>] &nbsp;&nbsp;";
