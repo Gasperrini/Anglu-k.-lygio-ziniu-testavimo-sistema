@@ -16,7 +16,7 @@ $role="";
         echo "</td></tr><tr><td>";
         if ($_SESSION['user'] != "guest") echo "[<a href=\"useredit.php\">Redaguoti paskyrą</a>] &nbsp;&nbsp;";
         if ($userlevel == $user_roles["Dėstytojas"]) {
-            echo "[<a href=\"operacija1.php\">Kurti testą</a>] &nbsp;&nbsp;";
+            echo "[<a href=\"create_test.php\">Kurti testą</a>] &nbsp;&nbsp;";
             echo "[<a href=\"operacija3.php\">Redaguoti testus</a>] &nbsp;&nbsp;";
             echo "[<a href=\"tests_results.php\">Testų įvertinimai</a>] &nbsp;&nbsp;";
        		} 
