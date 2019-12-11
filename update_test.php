@@ -38,7 +38,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 if ($connection->connect_error) {
                     die("Connection failed:" . $connection->connect_error);
                 }
-
+                
                 if (isset($_POST['question_id'])) {
                     $question_id = ($_POST['question_id']);
                 }
@@ -81,11 +81,12 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 $sql = "UPDATE questions SET `id`=$question_id[$i],`question`='$question[$i]',`mark`=$mark[$i],
                 `answer_1`='$answer_1[$i]',`answer_2`='$answer_2[$i]',`answer_3`='$answer_3[$i]',`answer_4`='$answer_4[$i]',`correct`='$correct[$i]',`fk_test`=$fk_test[$i] WHERE fk_test = $fk_test[$i]
                 AND id = $question_id[$i];";
-                var_dump($sql);
                 }
                 mysqli_query($connection,$sql);
 
                 $connection->close();
+
+                header("Location: choose_test.php");
                 ?>
 </body>
 

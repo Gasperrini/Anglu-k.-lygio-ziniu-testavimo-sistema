@@ -1,52 +1,88 @@
 <?php
+// operacija3.php  Parodoma registruotų vartotojų lentelė
+
 session_start();
 if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
     header("Location: logout.php");
     exit;
 }
 
-if (isset($_GET['title'])){
-    $title = ($_GET['title']);
-}
-if (isset($_GET['level'])){
-    $level = ($_GET['level']);
-}
+?>
+<html>
 
-$userid=$_SESSION['userid'];
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
+    <title>Testas baigtas!</title>
+    <link href="include/styles.css" rel="stylesheet" type="text/css">
+</head>
 
-$question = $_POST['question'];
-$mark = $_POST['mark'];
-$answer_1 = $_POST['answer_1'];
-$answer_2 = $_POST['answer_2'];
-$answer_3 = $_POST['answer_3'];
-$answer_4 = $_POST['answer_4'];
-$correct = $_POST['correct'];
+<body>
+    <table class="center">
+        <tr>
+            <td>
+                <center><img src="include/top.png"></center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php
+                include("include/meniu.php"); //įterpiamas meniu pagal vartotojo rolę
+                ?>
+                <center>
+                    <font size="5"><?php $title ?></font>
+                </center><br>
 
-$connection = mysqli_connect("localhost", "root", "", "vartvald");
-if ($connection->connect_error) {
-    die("Connection failed:" . $connection->connect_error);
-} else {
-    $sql = "SELECT id FROM tests WHERE fk_user = '$userid' AND level = '$level' AND title = '$title'";
-}
-$result = $connection->query($sql);
+                <?php
 
-if ($result->num_rows > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row['id'];
-    }
-}
+                $connection = mysqli_connect("localhost", "root", "", "vartvald");
+                if ($connection->connect_error) {
+                    die("Connection failed:" . $connection->connect_error);
+                }
 
-        $connection = mysqli_connect("localhost", "root", "", "vartvald");
-        if ($connection-> connect_error) {
-            die("Connection failed:". $connection-> connect_error);
-        }
+                if (isset($_GET['id'])) {
+                    $id = ($_GET['id']);
+                }
 
-        $sql= "INSERT INTO questions (id, question, mark, answer_1, answer_2, answer_3, answer_4, correct, fk_test) VALUES
-        (0,'$question',$mark,'$answer_1','$answer_2','$answer_3','$answer_4','$correct',$id)";
-        var_dump($sql);
-        
-        mysqli_query($connection,$sql);
+                if (isset($_POST['question'])) {
+                    $question = ($_POST['question']);
+                }
 
-        header('Location: index.php');
+                if (isset($_POST['mark'])) {
+                    $mark = ($_POST['mark']);
+                }
 
-        $connection->close();
+                if (isset($_POST['answer_1'])) {
+                    $answer_1 = ($_POST['answer_1']);
+                }
+
+                if (isset($_POST['answer_2'])) {
+                    $answer_2 = ($_POST['answer_2']);
+                }
+
+                if (isset($_POST['answer_3'])) {
+                    $answer_3 = ($_POST['answer_3']);
+                }
+
+                if (isset($_POST['answer_4'])) {
+                    $answer_4 = ($_POST['answer_4']);
+                }
+
+                if (isset($_POST['correct'])) {
+                    $correct = ($_POST['correct']);
+                }
+
+                $user=$_SESSION['user'];
+                $userid=$_SESSION['userid'];
+                for($i=0; $i < count($question); $i++){
+                $sql = "INSERT INTO questions (id,question,mark,answer_1,answer_2,answer_3,answer_4,correct,fk_test) VALUES
+                ($i,'$question[$i]',$mark[$i],'$answer_1[$i]','$answer_2[$i]','$answer_3[$i]','$answer_4[$i]','$correct[$i]',$id)";
+                mysqli_query($connection,$sql);
+                }
+
+                $connection->close();
+
+                header("Location: choose_test.php");
+                ?>
+</body>
+
+</html>

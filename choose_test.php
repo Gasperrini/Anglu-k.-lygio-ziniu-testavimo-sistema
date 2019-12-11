@@ -39,7 +39,10 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $title = $row['title'];
                 $level = $row['level'];
                 $teacher = $row['fk_user'];
-                echo "<tr style='text-align:center'><td><a href='edit_test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}&title={$row['title']}'>" . $row['title'] . "</a></td></tr>";
+                echo "<tr style='text-align:center'><td><a href='edit_test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}&title={$row['title']}'>" . $row['title'] . "</a>
+                </font></center><form action='delete_test.php' method='POST'>
+                <input id='id' type='hidden' name='id' value=".$id.">
+                <button type='submit'><b>Ištrinti testą</b></button></form></td></tr>";
             }
         } else {
             echo "</table><h2 style='text-align:center'>Nera sukurtu testu..</h2>";
