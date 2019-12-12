@@ -6,6 +6,8 @@ define("DB_USER", "root");
 define("DB_PASS", "");
 define("DB_NAME", "vartvald");
 define("TBL_USERS", "users");
+define("TBL_TESTS", "tests");
+define("TBL_QUESTIONS", "questions");
 
 $user_roles=array(      // vartotojų rolių vardai lentelėse ir  atitinkamos userlevel reikšmės
 	"Administratorius"=>"9",
