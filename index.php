@@ -31,7 +31,7 @@ include("include/functions.php");
 ?>
                 <div style="text-align: center;color:green">
                     <br><br>
-                    <h1>Pradinis sistemos puslapis (index.php).</h1>
+                    <h1>Sveiki atvykę į anglų k. lygio žinių testavimo sistemą!</h1>
                 </div><br>
       <?php
           }                

@@ -9,10 +9,10 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
         <meta http-equiv="X-UA-Compatible" content="IE=9; text/html; charset=utf-8">
         <title>Testo kūrimas</title>
         <link href="include/styles.css" rel="stylesheet" type="text/css" >
-        <<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(e){
-                var html='<br><div><p>Klausimas: <input type="text" id="question" name="question[]" required value=""></p><p>Taškų skaičius: <input type="text" id="mark" name="mark[]" required value=""></p><p>Pirmas atsakymas: <input type="text" id="answer_1" name="answer_1[]" required value=""></p><p>Antras atsakymas: <input type="text" id="answer_2" name="answer_2[]" required value=""></p><p>Trečias atsakymas: <input type="text" id="answer_3" name="answer_3[]" required value=""></p><p>Ketvirtas atsakymas: <input type="text" id="answer_4" name="answer_4[]" required value=""></p><p>Teisingas atsakymas: <input type="text" id="correct" name="correct[]" required value=""></p><a href ="#" id="remove">X</a></div>';
+                var html='<br><div><p>Klausimas: <input type="text" id="question" name="question[]" required value=""></p><p>Taškų skaičius: <input type="text" id="mark" name="mark[]" required value=""></p><p>Pirmas atsakymas: <input type="text" id="answer_1" name="answer_1[]" required value=""></p><p>Antras atsakymas: <input type="text" id="answer_2" name="answer_2[]" required value=""></p><p>Trečias atsakymas: <input type="text" id="answer_3" name="answer_3[]" required value=""></p><p>Ketvirtas atsakymas: <input type="text" id="answer_4" name="answer_4[]" required value=""></p><p>Teisingas atsakymas: <input type="text" id="correct" name="correct[]" required value=""></p><br><a href ="#" id="add">Pridėti</a>   <a href ="#" id="remove">Pašalinti</a><br></div>';
 
                 $("#add").click(function(e){
                     $("#container").append(html);
@@ -21,10 +21,15 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 $("#container").on('click','#remove',function(e){
                     $(this).parent('div').remove();
                 });
+
+                $("#container").on('click','#add',function(e){
+                    $("#container").append(html);
+                });
             });
         </script>
     </head>
     <body>
+        
         <table class="center" ><tr><td>
             <center><img src="include/top.png"></center>
         </td></tr><tr><td> 
@@ -63,10 +68,14 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 <p>Trečias atsakymas: <input type="text" id="answer_3" name="answer_3[]" required value=""></p>
                 <p>Ketvirtas atsakymas: <input type="text" id="answer_4" name="answer_4[]" required value=""></p>
                 <p>Teisingas atsakymas: <input type="text" id="correct" name="correct[]" required value=""></p>
-                <a href ="#" id="add">Prideti</a>
+                <br>
+                <a href ="#" id="add">Pridėti</a>
+                <br>
                 </div>
                 <br>
+                <div style="text-align:center">
                 <input type="submit" name="submit" value="Pridėti klausimą (-us)">
+                </div>
             </form>
         </div>
 </body>

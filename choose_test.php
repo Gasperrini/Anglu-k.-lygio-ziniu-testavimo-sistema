@@ -19,7 +19,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
  <?php
 		include("include/meniu.php"); //įterpiamas meniu pagal vartotojo rolę
  ?> 
-        <center><font size="5">Pasirinkite testa</font></center><br>
+        <center><font size="5">Pasirinkite testą</font></center><br>
         <?php
 
         $userid=$_SESSION['userid'];
@@ -39,13 +39,13 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $title = $row['title'];
                 $level = $row['level'];
                 $teacher = $row['fk_user'];
-                echo "<tr style='text-align:center'><td><a href='edit_test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}&title={$row['title']}'>" . $row['title'] . "</a>
-                </font></center><form action='delete_test.php' method='POST'>
+                echo "<tr style='text-align:left'><td><div style='display:inline-block'><a href='edit_test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}&title={$row['title']}'>" . $row['title'] . "</a>
+                </div></font></center><div style='display:inline-block; float:right'><form action='delete_test.php' method='POST'>
                 <input id='id' type='hidden' name='id' value=".$id.">
-                <button type='submit'><b>Ištrinti testą</b></button></form></td></tr>";
+                <button type='submit'><b>Ištrinti testą</b></button></form></div></td></tr>";
             }
         } else {
-            echo "</table><h2 style='text-align:center'>Nera sukurtu testu..</h2>";
+            echo "<h2 style='text-align:center'>Nėra sukurtų testų..</table></h2>";
         }
 
         $connection->close();

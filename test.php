@@ -24,6 +24,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
         $connection = mysqli_connect("localhost", "root", "", "vartvald");
         if (isset($_GET['id']) && isset($_GET['teacher']) && isset($_GET['level'])) {
             $fk = mysqli_real_escape_string($connection, $_GET['id']);
+            $title = mysqli_real_escape_string($connection, $_GET['title']);
             $teacher = mysqli_real_escape_string($connection, $_GET['teacher']);
             $level = mysqli_real_escape_string($connection, $_GET['level']);
         if ($connection->connect_error) {
@@ -46,7 +47,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $answer_4 = $row['answer_4'];
                 $correct = $row['correct'];
                 
-                echo "<div><form method='POST' action='test_calc.php?id=".$fk."&level=".$level."&teacher=".$teacher."'><br><b>" . $row['question'] . "</b><br><input type='radio' name='answer_".$id."' value=".$answer_1.">"
+                echo "<div><form method='POST' action='test_calc.php?id=".$fk."&level=".$level."&teacher=".$teacher."&title=".$title."'><br><b>" . $row['question'] . "</b><br><input type='radio' name='answer_".$id."' value=".$answer_1.">"
                         . $row['answer_1'] . "<br><input type='radio' name='answer_".$id."' value=".$answer_2.">" . $row['answer_2'] . "<br><input type='radio' name='answer_".$id."' value=".$answer_3.">" . $row['answer_3'] . 
                         "<br><input type='radio' name='answer_".$id."' value=".$answer_4.">" . $row['answer_4'] . "<input type='hidden' name='mark[]' value=".$row['mark'].">
                         <input type='hidden' name='correct[]' value=".$row['correct'].">
@@ -55,9 +56,9 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $count++;
             }
             echo "<input type='hidden' name='count' value=".$count.">";
-            echo '<button type="submit"><b>Baigti testa</b></button>';
+            echo '<button type="submit"><b>Baigti testą</b></button>';
         } else {
-            echo "</table><h2 style='text-align:center'>Testas neturi sukurtu klausimu..</h2>";
+            echo "</table><h2 style='text-align:center'>Testas neturi sukurtų klausimų..</h2>";
         }
     }
     ?>

@@ -38,21 +38,26 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 if ($connection->connect_error) {
                     die("Connection failed:" . $connection->connect_error);
                 }
+
+                if (isset($_GET['title'])) {
+                    $title = ($_GET['title']);
+                }
                 
-                if (isset($_GET['question_id'])) {
-                    $id = ($_POST['question_id']);
+                if (isset($_GET['id'])) {
+                    $id = ($_GET['id']);
                 }
 
                 if (isset($_GET['fk_test'])) {
-                    $fk_test = ($_POST['fk_test']);
+                    $fk_test = ($_GET['fk_test']);
                 }
 
-                $sql = "DELETE FROM questions WHERE id = $id AND fk_test = $fk_test";
-                mysqli_query($connection,$sql);
+                /*$sql = "DELETE FROM questions WHERE id = $id AND fk_test = $fk_test";
+                mysqli_query($connection,$sql);*/
+
+                echo "<div style='text-align:center; font-size:30px'>Šiuo metu ši funkcija neveikia..</div>";
 
                 $connection->close();
-
-                header("Location: choose_test.php");
+                header("refresh:3 url=edit_test.php?id=".$fk_test."&title=".$title."");
                 ?>
 </body>
 

@@ -43,12 +43,15 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                     $id = ($_POST['id']);
                 }
 
-                $sql = "DELETE FROM tests WHERE id = $id";
+                $sql = "DELETE FROM ". TBL_QUESTIONS." WHERE fk_test = $id";
+                $sql1 = "DELETE FROM ". TBL_TESTS." WHERE id = $id";
                 mysqli_query($connection,$sql);
-
+                mysqli_query($connection,$sql1);
                 $connection->close();
 
-                header("Location: choose_test.php");
+                echo "<div style='text-align:center; font-size:30px'>Testas pašalintas!</div>";
+
+                header("refresh:3 url=choose_test.php");
                 ?>
 </body>
 

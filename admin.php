@@ -22,7 +22,7 @@ $_SESSION['prev']="admin";
         <table class="center" ><tr><td>
             <center><img src="include/top.png"></center>
             </td></tr><tr><td>
-		<center><font size="5">Vartotojų registracija, peržiūra ir įgaliojimų keitimas</font></center></td></tr></table> <br>
+		<center><font size="5">Vartotojų registracija, peržiūra ir rolių keitimas</font></center></td></tr></table> <br>
 		<center><b><?php echo $_SESSION['message']; ?></b></center>
 		<form name="vartotojai" action="procadmin.php" method="post">
 	    <table class="center" style=" width:75%; border-width: 2px; border-style: dotted;">

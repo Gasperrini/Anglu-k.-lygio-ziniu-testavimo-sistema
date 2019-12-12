@@ -57,17 +57,19 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $correct = $row['correct'];
                 $fk_test = $row['fk_test'];
                 ?>
-                <form style="border-top:solid" action="delete_question.php?question_id='<?php echo "$question_id";?>'&fk_test='<?php echo "$fk_test";?>'" method="POST">
-                <input id="question_id" type="hidden" name="question_id" value='<?php echo "$question_id";?>'>
-                <input id="fk_test" type="hidden" name="fk_test" value='<?php echo "$fk_test";?>'>
-                <button type="submit"><b>Ištrinti klausimą</b></button>
-                </form>
 
-                <form action="update_test.php" method="POST">
+                <div>
+                    <form action="delete_question.php?id=<?php echo "$question_id";?>&fk_test=<?php echo "$fk_test";?>&title=<?php echo "$title";?>" method="POST">
+                    <button type="submit"><b>Trinti klausimą</b></button>
+                    </form>
+                </div>
+
+                <div>
+                <form action="update_test.php?title=<?php echo "$title";?>&fk_test=<?php echo "$fk_test";?>" method="POST">
                 <input id="question_id" type="hidden" name="question_id[]" value='<?php echo "$question_id";?>'>
                 <p>Klausimas: <input id="question" type="text" name="question[]" value='<?php echo "$question";?>'></p>
                 <p>Taškų skaičius: <input id="mark" type="text" name="mark[]" value='<?php echo "$mark";?>'></p>
-                <p>Pirmas klausimas: <input id="answer_1" type="text" name="answer_1[]" required value='<?php echo "$answer_1";?>'"></p>
+                <p>Pirmas klausimas: <input id="answer_1" type="text" name="answer_1[]" required value='<?php echo "$answer_1";?>'></p>
                 <p>Antras klausimas: <input id="answer_2" type="text" name="answer_2[]" required value='<?php echo "$answer_2";?>'></p>
                 <p>Trečias klausimas: <input id="answer_3" type="text" name="answer_3[]" required value='<?php echo "$answer_3";?>'></p>
                 <p>Ketvirtas klausimas: <input id="answer_4" type="text" name="answer_4[]" required value='<?php echo "$answer_4";?>'></p>
@@ -79,7 +81,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
         } else {
             echo "</table><h2 style='text-align:center'>Nera sukurtu klausimu..</h2>";
         }?>
-        
+        </div>
         <div style="text-align:center">
         <button type="submit"><b>Atnaujinti</b></button>
         </div>

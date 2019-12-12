@@ -47,6 +47,10 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                     $level = mysqli_real_escape_string($connection, $_GET['level']);
                 }
 
+                if (isset($_GET['title'])) {
+                    $title = mysqli_real_escape_string($connection, $_GET['title']);
+                }
+
                 if (isset($_POST['fk'])) {
                     $fk = mysqli_real_escape_string($connection, $_POST['fk']);
                 }
@@ -86,8 +90,9 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                     $status = 'Išlaikyta';
                 else $status = 'Neišlaikyta';
 
-                $sql = "INSERT INTO test_attempts (date, status, id, mark, top_mark, level, name, teacher, fk_user, fk_test) VALUES
-                    (CURRENT_TIMESTAMP,'$status',null,'$grade','$top_grade','$level','$user','$teacher','$userid','$fk');";
+                $sql = "INSERT INTO test_attempts (date, status, id, title, mark, top_mark, level, name, teacher, fk_user, fk_test) VALUES
+                    (CURRENT_TIMESTAMP,'$status',null,'$title','$grade','$top_grade','$level','$user','$teacher','$userid','$fk');";
+
 
                 mysqli_query($connection,$sql);
 

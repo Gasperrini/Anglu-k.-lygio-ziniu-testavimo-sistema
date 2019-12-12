@@ -30,7 +30,9 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                     <option value="A1">A1</option>
                 </select>
                 </p>
-                <input type="submit" name="submit" value="Prideti testa">
+                <div style="text-align:center">
+                <input type="submit" name="submit" value="Pridėti testą">
+                </div>
             </form>
         </div>
 

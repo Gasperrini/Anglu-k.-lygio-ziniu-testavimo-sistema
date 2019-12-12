@@ -38,6 +38,14 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 if ($connection->connect_error) {
                     die("Connection failed:" . $connection->connect_error);
                 }
+
+                if (isset($_GET['title'])) {
+                    $title = ($_GET['title']);
+                }
+
+                if (isset($_GET['fk_test'])) {
+                    $fk_test = ($_GET['fk_test']);
+                }
                 
                 if (isset($_POST['question_id'])) {
                     $question_id = ($_POST['question_id']);
@@ -71,22 +79,22 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                     $correct = ($_POST['correct']);
                 }
 
-                if (isset($_POST['fk_test'])) {
+                /*if (isset($_POST['fk_test'])) {
                     $fk_test= ($_POST['fk_test']);
-                }
+                }*/
 
                 $user=$_SESSION['user'];
                 $userid=$_SESSION['userid'];
-                for($i=0; $i < count($question_id); $i++){
+                /*for($i=0; $i < count($question); $i++){
                 $sql = "UPDATE questions SET `id`=$question_id[$i],`question`='$question[$i]',`mark`=$mark[$i],
                 `answer_1`='$answer_1[$i]',`answer_2`='$answer_2[$i]',`answer_3`='$answer_3[$i]',`answer_4`='$answer_4[$i]',`correct`='$correct[$i]',`fk_test`=$fk_test[$i] WHERE fk_test = $fk_test[$i]
                 AND id = $question_id[$i];";
-                }
                 mysqli_query($connection,$sql);
+                }*/
+                echo "<div style='text-align:center; font-size:30px'>Šiuo metu ši funkcija neveikia..</div>";
 
                 $connection->close();
-
-                header("Location: choose_test.php");
+                header("refresh:3 url=edit_test.php?id=".$fk_test."&title=".$title."");
                 ?>
 </body>
 

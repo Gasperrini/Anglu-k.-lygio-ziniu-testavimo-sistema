@@ -19,7 +19,7 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
  <?php
 		include("include/meniu.php"); //įterpiamas meniu pagal vartotojo rolę
  ?> 
-        <center><font size="5">Pasirinkite testa</font></center><br>
+        <center><font size="5">Pasirinkitę testą, kurį norite atlikti</font></center><br>
         <?php
         $connection = mysqli_connect("localhost", "root", "", "vartvald");
         if ($connection->connect_error) {
@@ -36,10 +36,10 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index"))
                 $title = $row['title'];
                 $level = $row['level'];
                 $teacher = $row['fk_user'];
-                echo "<tr style='text-align:center'><td><a href='test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}'>" . $row['title'] . ", lygis - " . $row['level'] . "</a></td></tr>";
+                echo "<tr style='text-align:center'><td><a href='test.php?id={$row['id']}&level={$row['level']}&teacher={$row['fk_user']}&title={$row['title']}'>" . $row['title'] . ", lygis - " . $row['level'] . "</a></td></tr>";
             }
         } else {
-            echo "</table><h2 style='text-align:center'>Nera sukurtu testu..</h2>";
+            echo "<h2 style='text-align:center'>Nėra sukurtų testų..</h2></table>";
         }
 
         $connection->close();

@@ -79,9 +79,11 @@ if (!isset($_SESSION['prev']) || ($_SESSION['prev'] != "index")) {
                 mysqli_query($connection,$sql);
                 }
 
+                echo "<div style='text-align:center; font-size:30px'Testas sukurtas!</div>";
+
                 $connection->close();
 
-                header("Location: choose_test.php");
+                header("refresh:3 url=index.php");
                 ?>
 </body>
 
