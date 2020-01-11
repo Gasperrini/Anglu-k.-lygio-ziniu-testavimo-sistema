@@ -9,3 +9,5 @@ Dėstytojas mato studentų atliktų testų įvertinimus.
     • Studentas – vartotojas, galintis pasirinkti skirtingus testus ir juos atlikti bei galintis matyti atliktų testų rezultatus. 
     
    Kai kurios dėstytojo funkcijos neveikia.
+   
+ Projekte naudojama PHP kalba, kuri kreipiasi į MySQL duomenų bazės valdymo sistemą. Stiliui naudojama CSS, o svetainės interaktyvumui – jQuery.
